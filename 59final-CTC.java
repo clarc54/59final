@@ -44,9 +44,9 @@ void reset() {
 //reset surface
 surface= random(height/4, height/2);
 //Lobsters
-alpha= new Lobster("Alpha", width/2);
-bravo= new Lobster("Bravo", width/4);
-charlie= new Lobster("Charlie", width*1/4);
+alpha= new Lobster("Alpha", width/3);
+bravo= new Lobster("Bravo", width/2);
+charlie= new Lobster("Charlie", width*1/8);
 delta= new Lobster( "Delta", width *3/4);
 }
 
@@ -62,54 +62,41 @@ class Lobster {
   float x,y;
   // Speed
   float dx=0,dy=0;
-  float w=30,h=30;
-  //legs
-  int legs=10;
+  float w=50,h=30;
   String name="";
   // color
   float r,g,b;
   //Constructors
-  Lobster( String s, float x ) {
-    this.name=  s;
+  Lobster( String l, float x ) {
+    this.name=  l;
     this.x=x;
     bottom();
-    r=  random(100, 255);
-    g=  random(0, 100);
-    b=  random(100, 250);
+    r=  random(125, 255);
+    g=  random(0,0);
+    b=  random(0,0);
+  }
+  void bottom() {
+    y=  height - h*2;
+    dy=  -random( 0.1, 0.9 );
   }
   
   void move(){
    x += dx;
     y += dy;
     if (y<surface) {
-      bottom();
+     bottom();
      }
   }
 
   //Display lobsters: alpha, bravo, charlie, delta
-  void show {
+  void show() {
     fill(r,g,b);
     stroke(r,g,b);
-    ellipse( x,y, w,h );         // round top
-    rect( x-w/2,y, w,h/2 );      // flat bottom
-    fill(255);
-    float blink=10;
-    if ( y%100 > 80) blink=2;
-    ellipse( x,y-h/4, 10, blink );     // eye
-    // Legs
-    fill(r,g,b);                 // legs.
-    float legX=  x-w/2, foot=0;
-    if (dy<0) {
-      foot=5;
-      if (y%50 > 25) foot=  -foot;
-      //--  if (frameCount/30 %  2 > 0) foot=  -foot;
-    }
-    for (int i=0; i<legs; i++) {
-      line( legX, y+h/2, legX+foot, 20+y+h/2 );
-      legX += w / (legs-1);
-    }
-    fill(200,200,0);
-    //  text( name+"("+legs+")", x-w/2, y-20 );
-    text( name, x-w/2, y+h/2 );
+    //ellipse( x,y, w,h ); 
+    ellipse(x,y,w,h);
+    rect(x-5,y-5,50,5);
+    rect(x+5,y+5,40,5);
+    fill(r,g,b);
+    text( name, x-w, y+h );
     }
 }
