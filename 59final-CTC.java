@@ -20,8 +20,10 @@ void draw(){
 void scene(){
   background(0,0,250);
   fill(0,255,0);
+  stroke(0,255,0);
   rect(0,surface, width, height-surface);
-  fill(204,204,0);
+  fill(255,255,0);
+  stroke(255,255,0);
   ellipse(60,60,60,60);
   fill(0);
   text("Christopher Clark", height, width/2+150);
