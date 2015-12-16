@@ -1,6 +1,6 @@
 //Christopher Clark
 //CST112 Final
-Lobster alpha, bravo, charlie, delta
+Lobster alpha, bravo, charlie, delta;
 float surface;
 
 //Setup
@@ -28,7 +28,7 @@ void scene(){
 }
 void action(){
   alpha.move();
-  bravo.move():
+  bravo.move();
   charlie.move();
   delta.move();
 }
@@ -68,9 +68,9 @@ class Lobster {
   String name="";
   // color
   float r,g,b;
-  
-  Lobster( String l, float x ) {
-    this.name=  l;
+  //Constructors
+  Lobster( String s, float x ) {
+    this.name=  s;
     this.x=x;
     bottom();
     r=  random(100, 255);
@@ -78,5 +78,38 @@ class Lobster {
     b=  random(100, 250);
   }
   
-void move(){
-void show
+  void move(){
+   x += dx;
+    y += dy;
+    if (y<surface) {
+      bottom();
+     }
+  }
+
+  //Display lobsters: alpha, bravo, charlie, delta
+  void show {
+    fill(r,g,b);
+    stroke(r,g,b);
+    ellipse( x,y, w,h );         // round top
+    rect( x-w/2,y, w,h/2 );      // flat bottom
+    fill(255);
+    float blink=10;
+    if ( y%100 > 80) blink=2;
+    ellipse( x,y-h/4, 10, blink );     // eye
+    // Legs
+    fill(r,g,b);                 // legs.
+    float legX=  x-w/2, foot=0;
+    if (dy<0) {
+      foot=5;
+      if (y%50 > 25) foot=  -foot;
+      //--  if (frameCount/30 %  2 > 0) foot=  -foot;
+    }
+    for (int i=0; i<legs; i++) {
+      line( legX, y+h/2, legX+foot, 20+y+h/2 );
+      legX += w / (legs-1);
+    }
+    fill(200,200,0);
+    //  text( name+"("+legs+")", x-w/2, y-20 );
+    text( name, x-w/2, y+h/2 );
+    }
+}
