@@ -13,6 +13,8 @@ void setup(){
 //Scene
 void draw(){
   scene();
+  action();
+  show();
   
 }
 void scene(){
@@ -23,6 +25,18 @@ void scene(){
   ellipse(60,60,60,60);
   fill(0);
   text("Christopher Clark", height, width/2+150);
+}
+void action(){
+  alpha.move();
+  bravo.move():
+  charlie.move();
+  delta.move();
+}
+void show(){
+  alpha.show(); 
+  bravo.show(); 
+  charlie.show();
+  delta.show();
 }
 
 //Reset scene
@@ -63,3 +77,6 @@ class Lobster {
     g=  random(0, 100);
     b=  random(100, 250);
   }
+  
+void move(){
+void show
